@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Finder</title>
+
+<meta name="theme-color" content="#2563EB">
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="logo">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h1>Finder</h1>
+
+</div>
+
+<div class="menu">
+
+<i class="fa-solid fa-bars"></i>
+
+</div>
+
+</header>
+
+<!-- LOCATION CARD -->
+
+<section class="location-card">
+
+<div>
+
+<h3>
+<i class="fa-solid fa-location-crosshairs"></i>
+
+Current Location
+
+</h3>
+
+<p id="location">
+Detecting your location...
+</p>
+
+</div>
+
+<div class="weather">
+
+<img id="weatherIcon"
+src="images/weather.png">
+
+<h2 id="temp">--°C</h2>
+
+<p id="weatherText">
+
+Loading...
+
+</p>
+
+</div>
+
+</section>
+
+<!-- TOP BANNER -->
+
+<section class="top-banner">
+
+<div class="banner-text">
+
+<h2>Advertisement</h2>
+
+<p>
+
+Your Banner Ad Appears Here
+
+</p>
+
+</div>
+
+</section>
+
+<!-- SEARCH -->
+
+<section class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+placeholder="Search nearby places...">
+
+</section>
+
+<!-- FACILITY GRID -->
+
+<section class="grid">
+
+<!-- HOTELS -->
+
+<div class="card" onclick="findPlace('hotel')">
+
+<div class="icon hotel">
+
+🏨
+
+</div>
+
+<h3>
+
+Hotels
+
+</h3>
+
+<p>
+
+Near Me
+
+</p>
+
+</div>
+
+<!-- FUEL -->
+
+<div class="card"
+
+onclick="findPlace('fuel station')">
+
+<div class="icon fuel">
+
+⛽
+
+</div>
+
+<h3>
+
+Fuel Stations
+
+</h3>
+
+<p>
+
+Near Me
+
+</p>
+
+</div>
+
+<!-- ATM -->
+
+<div class="card"
+
+onclick="findPlace('ATM')">
+
+<div class="icon atm">
+
+🏧
+
+</div>
+
+<h3>
+
+ATM
+
+</h3>
+
+<p>
+
+Near Me
+
+</p>
+
+</div>
+
+<!-- HOSPITAL -->
+
+<div class="card"
+
+onclick="findPlace('hospital')">
+
+<div class="icon hospital">
+
+🏥
+
+</div>
+
+<h3>
+
+Hospitals
+
+</h3>
+
+<p>
+
+Near Me
+
+</p>
+
+</div>
+
+<!-- MEDICAL SHOP -->
+
+<div class="card" onclick="findPlace('medical shop')">
+
+    <div class="icon medical">
+        💊
+    </div>
+
+    <h3>Medical Shops</h3>
+
+    <p>Near Me</p>
+
+</div>
+
+<!-- BUS STOP -->
+
+<div class="card" onclick="findPlace('bus stop')">
+
+    <div class="icon bus">
+        🚏
+    </div>
+
+    <h3>Bus Stops</h3>
+
+    <p>Near Me</p>
+
+</div>
+
+<!-- AKSHAYA CENTER -->
+
+<div class="card" onclick="findPlace('Akshaya Center')">
+
+    <div class="icon akshaya">
+        🏢
+    </div>
+
+    <h3>Akshaya Centers</h3>
+
+    <p>Near Me</p>
+
+</div>
+
+<!-- CURRENT LOCATION -->
+
+<div class="card" onclick="refreshLocation()">
+
+    <div class="icon location">
+        📍
+    </div>
+
+    <h3>Current Location</h3>
+
+    <p>Refresh GPS</p>
+
+</div>
+
+</section>
+
+<!-- BOTTOM AD -->
+
+<section class="bottom-ad">
+
+    <div class="ad-box">
+
+        <span>Advertisement</span>
+
+        <h3>Your Ad Appears Here</h3>
+
+    </div>
+
+</section>
+
+<!-- BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav">
+
+    <button>
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>Home</span>
+
+    </button>
+
+    <button>
+
+        <i class="fa-solid fa-heart"></i>
+
+        <span>Favorites</span>
+
+    </button>
+
+    <button>
+
+        <i class="fa-solid fa-location-dot"></i>
+
+        <span>Location</span>
+
+    </button>
+
+    <button>
+
+        <i class="fa-solid fa-gear"></i>
+
+        <span>Settings</span>
+
+    </button>
+
+</nav>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>  
