@@ -1,0 +1,562 @@
+/* =========================================
+   FINDER PWA
+   STYLE.CSS - PART 1
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+    --primary:#2563eb;
+    --secondary:#3b82f6;
+
+    --background:#f3f6fb;
+
+    --white:#ffffff;
+
+    --text:#222;
+
+    --grey:#666;
+
+    --shadow:0 8px 25px rgba(0,0,0,.08);
+
+    --radius:22px;
+
+}
+
+body{
+
+    background:var(--background);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+}
+
+.app{
+
+    max-width:520px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    padding:18px;
+
+}
+
+/* =====================
+HEADER
+===================== */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.logo i{
+
+    color:var(--primary);
+
+    font-size:28px;
+
+}
+
+.logo h1{
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.menu{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:var(--shadow);
+
+    cursor:pointer;
+
+}
+
+/* =====================
+LOCATION CARD
+===================== */
+
+.location-card{
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+    color:#fff;
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+}
+
+.location-card h3{
+
+    font-size:18px;
+
+    margin-bottom:8px;
+
+}
+
+.location-card p{
+
+    font-size:14px;
+
+    opacity:.9;
+
+}
+
+.weather{
+
+    text-align:center;
+
+}
+
+.weather img{
+
+    width:55px;
+
+    margin-bottom:5px;
+
+}
+
+.weather h2{
+
+    font-size:28px;
+
+}
+
+/* =====================
+TOP BANNER
+===================== */
+
+.top-banner{
+
+    background:linear-gradient(135deg,#ff9800,#ffb74d);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    color:#fff;
+
+    margin-bottom:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.banner-text h2{
+
+    font-size:22px;
+
+}
+
+.banner-text p{
+
+    margin-top:8px;
+
+    opacity:.9;
+
+}
+
+/* =====================
+SEARCH BOX
+===================== */
+
+.search-box{
+
+    display:flex;
+
+    align-items:center;
+
+    background:#fff;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+
+}
+
+.search-box i{
+
+    color:var(--grey);
+
+    font-size:18px;
+
+    margin-right:12px;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   FACILITY GRID
+========================================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+.card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:22px 15px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.30s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(37,99,235,.20);
+
+}
+
+.card:active{
+
+    transform:scale(.96);
+
+}
+
+.card h3{
+
+    margin-top:12px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+.card p{
+
+    margin-top:5px;
+
+    font-size:13px;
+
+    color:#777;
+
+}
+
+/* ICON */
+
+.icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:20px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+}
+
+/* ICON COLORS */
+
+.hotel{
+
+    background:#FFE4E6;
+
+}
+
+.fuel{
+
+    background:#FFF7D6;
+
+}
+
+.atm{
+
+    background:#DCFCE7;
+
+}
+
+.hospital{
+
+    background:#DBEAFE;
+
+}
+
+.medical{
+
+    background:#FCE7F3;
+
+}
+
+.bus{
+
+    background:#E0F2FE;
+
+}
+
+.akshaya{
+
+    background:#EDE9FE;
+
+}
+
+.location{
+
+    background:#D1FAE5;
+
+}
+
+/* ==========================================
+   ADVERTISEMENT
+========================================== */
+
+.bottom-ad{
+
+    margin:25px 0;
+
+}
+
+.ad-box{
+
+    background:linear-gradient(135deg,#4F46E5,#2563EB);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    color:white;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(79,70,229,.25);
+
+}
+
+.ad-box span{
+
+    font-size:13px;
+
+    opacity:.85;
+
+}
+
+.ad-box h3{
+
+    margin-top:10px;
+
+    font-size:22px;
+
+}
+
+/* ==========================================
+   BOTTOM NAVIGATION
+========================================== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    box-shadow:0 -6px 20px rgba(0,0,0,.08);
+
+    z-index:999;
+
+}
+
+.bottom-nav button{
+
+    border:none;
+
+    background:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+.bottom-nav button i{
+
+    font-size:22px;
+
+    margin-bottom:5px;
+
+}
+
+.bottom-nav button:hover{
+
+    color:#2563EB;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563EB;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:500px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.logo h1{
+
+font-size:24px;
+
+}
+
+.location-card{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.weather{
+
+width:100%;
+
+text-align:left;
+
+}
+
+}
