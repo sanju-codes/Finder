@@ -511,3 +511,329 @@ window.addEventListener("online",()=>{
 alert("Internet Connected");
 
 });
+
+/* ==========================================
+   LEAFLET MAP + OVERPASS API
+========================================== */
+
+let map = null;
+let markers = [];
+
+function initMap() {
+
+    if (!currentLat || !currentLng) return;
+
+    if (map) {
+
+        map.remove();
+
+    }
+
+    map = L.map("map").setView([currentLat, currentLng], 15);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap"
+    }).addTo(map);
+
+    L.marker([currentLat, currentLng])
+        .addTo(map)
+        .bindPopup("You are here")
+        .openPopup();
+
+}
+
+async function loadNearby(type) {
+
+    if (!currentLat || !currentLng) return;
+
+    clearMarkers();
+
+    const query = `
+[out:json];
+(
+ node["amenity"="${type}"](around:5000,${currentLat},${currentLng});
+ way["amenity"="${type}"](around:5000,${currentLat},${currentLng});
+ relation["amenity"="${type}"](around:5000,${currentLat},${currentLng});
+);
+out center;
+`;
+
+    const response = await fetch(
+        "https://overpass-api.de/api/interpreter",
+        {
+            method: "POST",
+            body: query
+        }
+    );
+
+    const data = await response.json();
+
+    data.elements.forEach(place => {
+
+        const lat = place.lat || place.center.lat;
+        const lng = place.lon || place.center.lon;
+
+        const distance =
+            calculateDistance(
+                currentLat,
+                currentLng,
+                lat,
+                lng
+            );
+
+        const name =
+            place.tags.name || "Unknown";
+
+        const marker = L.marker([lat, lng])
+            .addTo(map);
+
+        marker.bindPopup(`
+            <b>${name}</b><br>
+            Distance : ${distance} km<br><br>
+
+            <button onclick="navigate(${lat},${lng})">
+            Directions
+            </button>
+        `);
+
+        markers.push(marker);
+
+    });
+
+}
+
+function clearMarkers(){
+
+    markers.forEach(marker=>{
+
+        map.removeLayer(marker);
+
+    });
+
+    markers=[];
+
+}
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function navigate(lat,lng){
+
+    window.open(
+
+`https://www.google.com/maps/dir/${currentLat},${currentLng}/${lat},${lng}`,
+
+"_blank"
+
+    );
+
+}
+
+/* ==========================================
+   CATEGORY FUNCTIONS
+========================================== */
+
+function findPlace(type){
+
+    initMap();
+
+    switch(type){
+
+        case "hotel":
+            loadNearby("restaurant");
+            break;
+
+        case "hospital":
+            loadNearby("hospital");
+            break;
+
+        case "ATM":
+            loadNearby("atm");
+            break;
+
+        case "fuel station":
+            loadNearby("fuel");
+            break;
+
+        case "medical shop":
+            loadNearby("pharmacy");
+            break;
+
+        case "bus stop":
+            loadNearby("bus_station");
+            break;
+
+        default:
+
+            window.open(
+
+`https://www.google.com/maps/search/${type}/@${currentLat},${currentLng},15z`
+
+);
+
+    }
+
+}
+
+/* ==========================================
+   SEARCH RESULTS
+========================================== */
+
+const resultsContainer = document.getElementById("results");
+
+function showResults(list) {
+
+    if (!resultsContainer) return;
+
+    resultsContainer.innerHTML = "";
+
+    if (list.length === 0) {
+
+        resultsContainer.innerHTML =
+        "<p class='empty'>No places found.</p>";
+
+        return;
+
+    }
+
+    list.forEach(place => {
+
+        const lat = place.lat || place.center.lat;
+        const lng = place.lon || place.center.lon;
+
+        const name = place.tags.name || "Unknown Place";
+
+        const distance = calculateDistance(
+            currentLat,
+            currentLng,
+            lat,
+            lng
+        );
+
+        const address =
+            place.tags["addr:street"] || "";
+
+        const div = document.createElement("div");
+
+        div.className = "place-card";
+
+        div.innerHTML = `
+        <h3>${name}</h3>
+
+        <p>${address}</p>
+
+        <p>📏 ${distance} km Away</p>
+
+        <div class="actions">
+
+            <button onclick="navigate(${lat},${lng})">
+            🧭 Directions
+            </button>
+
+            <button onclick="saveFavorite('${name}')">
+            ❤️ Favorite
+            </button>
+
+            <button onclick="sharePlace('${name}',${lat},${lng})">
+            📤 Share
+            </button>
+
+        </div>
+        `;
+
+        resultsContainer.appendChild(div);
+
+    });
+
+}
+
+/* ==========================================
+   SHARE PLACE
+========================================== */
+
+function sharePlace(name, lat, lng) {
+
+    const url =
+`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+
+    if (navigator.share) {
+
+        navigator.share({
+
+            title: name,
+
+            text: name,
+
+            url: url
+
+        });
+
+    } else {
+
+        window.open(url);
+
+    }
+
+}
+
+/* ==========================================
+   RECENT SEARCHES
+========================================== */
+
+function saveRecent(place) {
+
+    let recent = JSON.parse(
+        localStorage.getItem("recent") || "[]"
+    );
+
+    recent = recent.filter(item => item !== place);
+
+    recent.unshift(place);
+
+    recent = recent.slice(0, 10);
+
+    localStorage.setItem(
+        "recent",
+        JSON.stringify(recent)
+    );
+
+}
+
+/* ==========================================
+   FAVORITES LIST
+========================================== */
+
+function showFavorites() {
+
+    const fav = getFavorites();
+
+    console.log(fav);
+
+}
+
+/* ==========================================
+   NETWORK STATUS
+========================================== */
+
+window.addEventListener("offline", () => {
+
+    alert("📴 Offline Mode");
+
+});
+
+window.addEventListener("online", () => {
+
+    alert("🌐 Internet Connected");
+
+});
+
+/* ==========================================
+   APP READY
+========================================== */
+
+window.addEventListener("load", () => {
+
+    console.log("Finder Ready");
+
+});
