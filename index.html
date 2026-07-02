@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#2563EB">
+
+<meta name="description"
+content="Finder - Find Nearby Places Easily">
+
+<title>Finder</title>
+
+<!-- PWA -->
+
+<link rel="manifest" href="manifest.json">
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Font -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- Leaflet -->
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="logo">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h1>Finder</h1>
+
+</div>
+
+<button id="menuBtn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+</header>
+
+<!-- LOCATION CARD -->
+
+<section class="hero">
+
+<div class="left">
+
+<span>Current Location</span>
+
+<h2 id="locationName">
+
+Detecting Location...
+
+</h2>
+
+<p id="weatherText">
+
+Loading Weather...
+
+</p>
+
+</div>
+
+<div class="right">
+
+<img
+id="weatherIcon"
+src="assets/weather/sunny.png"
+alt="Weather">
+
+<h2 id="temperature">
+
+--°C
+
+</h2>
+
+</div>
+
+</section>
+
+<!-- SEARCH -->
+
+<section class="search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search nearby places...">
+
+</section>
+
+<!-- AD BANNER -->
+
+<section class="banner">
+
+<div class="banner-box">
+
+Advertisement Space
+
+</div>
+
+</section>
+
+<!-- CATEGORY GRID -->
+
+<section class="grid">
+
+<button class="card"
+onclick="findPlace('hotel')">
+
+🏨
+
+<h3>Hotels</h3>
+
+</button>
+
+<button class="card"
+onclick="findPlace('fuel')">
+
+⛽
+
+<h3>Fuel</h3>
+
+</button>
+
+<button class="card"
+onclick="findPlace('atm')">
+
+🏧
+
+<h3>ATM</h3>
+
+</button>
+
+<button class="card"
+onclick="findPlace('hospital')">
+
+🏥
+
+<h3>Hospital</h3>
+
+</button>
+
+<!-- MORE CATEGORY CARDS -->
+
+<button class="card" onclick="findPlace('pharmacy')">
+    💊
+    <h3>Medical Shops</h3>
+</button>
+
+<button class="card" onclick="findPlace('bus_station')">
+    🚏
+    <h3>Bus Stops</h3>
+</button>
+
+<button class="card" onclick="findPlace('government office')">
+    🏢
+    <h3>Akshaya Centers</h3>
+</button>
+
+<button class="card" onclick="refreshLocation()">
+    📍
+    <h3>Refresh</h3>
+</button>
+
+</section>
+
+<!-- QUICK ACTIONS -->
+
+<section class="quick-actions">
+
+    <button onclick="toggleDarkMode()">
+        🌙
+        <span>Dark Mode</span>
+    </button>
+
+    <button onclick="shareApp()">
+        📤
+        <span>Share</span>
+    </button>
+
+    <button onclick="installApp()">
+        📲
+        <span>Install</span>
+    </button>
+
+</section>
+
+<!-- LIVE MAP -->
+
+<section class="map-section">
+
+    <h2>Nearby Map</h2>
+
+    <div id="map"></div>
+
+</section>
+
+<!-- RESULTS -->
+
+<section class="results-section">
+
+    <h2>Nearby Places</h2>
+
+    <div id="results"></div>
+
+</section>
+
+<!-- BOTTOM AD -->
+
+<section class="bottom-banner">
+
+    <div class="banner-box">
+
+        Google AdSense Banner
+
+    </div>
+
+</section>
+
+<!-- BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav">
+
+<button class="active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Home</span>
+
+</button>
+
+<button onclick="showFavorites()">
+
+<i class="fa-solid fa-heart"></i>
+
+<span>Favorites</span>
+
+</button>
+
+<button onclick="refreshLocation()">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<span>Nearby</span>
+
+</button>
+
+<button>
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</button>
+
+</nav>
+
+</div>
+
+<!-- Leaflet JS -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- App JS -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
